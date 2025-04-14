@@ -1,115 +1,203 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, ExternalLink, ArrowUp } from 'lucide-react';
+import { Howl } from 'howler';
+import Image from 'next/image';
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const tickSound = new Howl({
+  src: ['/sounds/ticksound.wav'],
+  volume: 0.3,
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const projects = [
+  {
+    title: 'Full-Stack Blogging Platform',
+    description:
+      'A modern blogging platform built with Next.js, PostgreSQL, and Prisma. Features include secure user authentication using JWT, a rich-text editor for creating posts, comment threads, likes, and real-time updates using WebSockets. The backend is fully RESTful and optimized for scalability.',
+    github: 'https://github.com/Dhruvil-Rangani/blogsite',
+    live: 'https://makeblog.vercel.app/',
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JWT'],
+  },
+  {
+    title: 'Fintech Web Application',
+    description:
+      'A complete financial platform built with the MERN stack for managing investments and tracking portfolios. Features include secure login, payment integration, data visualization, and role-based user access. Uses Redux for state management and MongoDB Atlas for data storage.',
+    github: 'https://github.com/Dhruvil-Rangani/Paytm-Web-App',
+    live: 'https://moneytransfer.vercel.app/',
+    techStack: ['MongoDB', 'Express.js', 'React', 'Node.js', 'Redux', 'Chart.js'],
+  },
+  {
+    title: 'Healthcare AI Assistant',
+    description:
+      'An AI-powered assistant using Brain.js to predict user health patterns based on symptom input. Users can access health logs, track conditions, and get suggestions. Built with React and Node.js, and stores data securely with MongoDB. Auth uses JWT for secure access.',
+    github: 'https://github.com/Dhruvil-Rangani/vital_plus',
+    live: 'https://vital-plus.netlify.app/',
+    techStack: ['React', 'Node.js', 'Brain.js', 'MongoDB', 'JWT'],
+  },
+];
+
+
+
+const skills = [
+  { name: 'JavaScript', icon: '/icons/javascript.svg' },
+  { name: 'TypeScript', icon: '/icons/typescript.svg' },
+  { name: 'React', icon: '/icons/react.svg' },
+  { name: 'Next.js', icon: '/icons/nextjs.svg' },
+  { name: 'Node.js', icon: '/icons/nodejs.svg' },
+  { name: 'MongoDB', icon: '/icons/mongodb.svg' },
+  { name: 'PostgreSQL', icon: '/icons/postgresql.svg' },
+  { name: 'AWS', icon: '/icons/aws.svg' },
+  { name: 'Docker', icon: '/icons/docker.svg' },
+  { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
+  { name: 'Tailwind CSS', icon: '/icons/tailwindcss.svg' },
+  { name: 'Git', icon: '/icons/git.svg' }
+];
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
+
+  const playTick = () => {
+    tickSound.play();
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 50);
+
+      const sections = ['about', 'skills', 'projects'];
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            if (activeSection !== section) playTick();
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeSection]);
+
+  const sectionVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="relative min-h-screen bg-black text-white scroll-smooth px-4 sm:px-6 py-10 overflow-x-hidden">
+      <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/10 via-blue-500/10 to-transparent pointer-events-none z-0" />
+
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        className={`fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 backdrop-blur ${scrolled ? 'bg-black/70' : 'bg-transparent'
+          }`}
+      >
+        <div className="flex justify-center flex-wrap space-x-4 sm:space-x-6 py-3 text-sm sm:text-base">
+          {['about', 'skills', 'projects'].map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              className={`px-2 py-1 rounded transition-colors duration-300 ${activeSection === section ? 'text-blue-400 font-semibold' : 'hover:bg-blue-600/20'
+                }`}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </motion.nav>
+
+      {scrolled && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <ArrowUp />
+        </button>
+      )}
+
+      <motion.div initial="hidden" animate="visible" variants={sectionVariant} transition={{ duration: 0.5 }} className="text-center mt-24 relative z-10">
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Dhruvil Rangani</h1>
+        <p className="text-base sm:text-lg">Software Developer | Full-Stack Engineer | Cloud & API Enthusiast</p>
+        <div className="flex flex-wrap justify-center gap-4 mt-4">
+          <a href="https://github.com/Dhruvil-Rangani" target="_blank" rel="noopener noreferrer"><Github /></a>
+          <a href="https://www.linkedin.com/in/dhruvilrangani007/" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
+          <a href="mailto:dhruvilrangani007@gmail.com" className="text-blue-400 hover:text-blue-300">dhruvilrangani007@gmail.com</a>
+        </div>
+      </motion.div>
+
+      <motion.section id="about" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={sectionVariant} transition={{ duration: 0.5 }} className="mt-16 relative z-10">
+        <h2 className="text-2xl font-semibold mb-4">About Me</h2>
+        <p className="text-sm sm:text-base">
+          I’m a passionate Full Stack Software Engineer with a strong foundation in building robust and scalable web applications.
+          Proficient in React, Next.js, Node.js, TypeScript, and AWS, I bring hands-on experience from projects spanning blogging platforms,
+          fintech systems, and AI-powered healthcare apps. My skillset includes both SQL and NoSQL databases like PostgreSQL and MongoDB,
+          and I’m well-versed in DevOps tools like Docker and cloud platforms. I value clean architecture, intuitive UI/UX design, and agile
+          collaboration. I'm currently looking for exciting opportunities where I can contribute to impactful products while growing as a developer.
+        </p>
+      </motion.section>
+
+      <motion.section id="skills" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={sectionVariant} transition={{ duration: 0.5 }} className="mt-16 relative z-10">
+        <h2 className="text-2xl font-semibold mb-4">Skills</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+          {skills.map(skill => (
+            <motion.div
+              whileHover={{ scale: 1.05, rotate: 1 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              key={skill.name}
+              className="flex items-center gap-2 bg-zinc-900 p-3 rounded-md shadow hover:shadow-lg hover:bg-blue-800/20 cursor-pointer"
+            >
+              <Image src={skill.icon} alt={skill.name} width={24} height={24} />
+              <span>{skill.name}</span>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section id="projects" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={sectionVariant} transition={{ duration: 0.5 }} className="mt-16 relative z-10">
+        <h2 className="text-2xl font-semibold mb-4 text-center">Projects</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {projects.map((proj, i) => (
+            <motion.div
+              key={i}
+              className="bg-zinc-900 p-6 rounded-xl shadow-xl hover:bg-blue-800/10 transition-all duration-300 flex flex-col justify-between"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: i * 0.15, ease: 'easeOut' }}
+            >
+              <div>
+                <h3 className="text-xl font-bold mb-2">{proj.title}</h3>
+                <div className="flex flex-wrap gap-4 mb-3 text-sm text-blue-300">
+                  <a href={proj.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:underline">
+                    <Github size={16} /> GitHub
+                  </a>
+                  <a href={proj.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:underline">
+                    <ExternalLink size={16} /> Live Demo
+                  </a>
+                </div>
+                <p className="text-sm mb-4 text-gray-300">{proj.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {proj.techStack.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="bg-blue-700/20 text-blue-300 text-xs font-medium px-2 py-1 rounded-full"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
     </div>
   );
 }
