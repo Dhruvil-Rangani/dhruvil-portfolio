@@ -134,10 +134,10 @@ export default function Home() {
       <motion.section id="about" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={sectionVariant} transition={{ duration: 0.5 }} className="mt-16 relative z-10">
         <h2 className="text-2xl font-semibold mb-4">About Me</h2>
         <p className="text-sm sm:text-base">
-          I’m a passionate Full Stack Software Engineer with a strong foundation in building robust and scalable web applications.
+          I&apos;m a passionate Full Stack Software Engineer with a strong foundation in building robust and scalable web applications.
           Proficient in React, Next.js, Node.js, TypeScript, and AWS, I bring hands-on experience from projects spanning blogging platforms,
           fintech systems, and AI-powered healthcare apps. My skillset includes both SQL and NoSQL databases like PostgreSQL and MongoDB,
-          and I’m well-versed in DevOps tools like Docker and cloud platforms. I value clean architecture, intuitive UI/UX design, and agile
+          and I&apos;m well-versed in DevOps tools like Docker and cloud platforms. I value clean architecture, intuitive UI/UX design, and agile
           collaboration. I'm currently looking for exciting opportunities where I can contribute to impactful products while growing as a developer.
         </p>
       </motion.section>
