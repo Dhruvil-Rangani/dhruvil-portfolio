@@ -138,7 +138,7 @@ export default function Home() {
           Proficient in React, Next.js, Node.js, TypeScript, and AWS, I bring hands-on experience from projects spanning blogging platforms,
           fintech systems, and AI-powered healthcare apps. My skillset includes both SQL and NoSQL databases like PostgreSQL and MongoDB,
           and I&apos;m well-versed in DevOps tools like Docker and cloud platforms. I value clean architecture, intuitive UI/UX design, and agile
-          collaboration. I'm currently looking for exciting opportunities where I can contribute to impactful products while growing as a developer.
+          collaboration. I&apos;m currently looking for exciting opportunities where I can contribute to impactful products while growing as a developer.
         </p>
       </motion.section>
 
