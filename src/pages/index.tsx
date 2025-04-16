@@ -1,17 +1,19 @@
-// Final enhanced version with cool animations
+// Final enhanced version with smooth crossfade and sound-animated roles
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, ExternalLink, ArrowUp } from 'lucide-react';
 import { Howl } from 'howler';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 
 const tickSound = new Howl({
   src: ['/sounds/ticksound.wav'],
   volume: 0.3,
 });
 
-const Typewriter = dynamic(() => import('typewriter-effect'), { ssr: false });
+const roleSound = new Howl({
+  src: ['/sounds/roleswap.wav'], // You can use the same tickSound if roleswap.wav doesn't exist
+  volume: 0.3,
+});
 
 const projects = [
   {
@@ -55,9 +57,27 @@ const skills = [
   { name: 'Git', icon: '/icons/git.svg' }
 ];
 
+const roles = [
+  'Software Developer',
+  'Full-Stack Engineer',
+  'Cloud & API Enthusiast',
+];
+
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentRoleIndex(prev => {
+        const next = (prev + 1) % roles.length;
+        roleSound.play();
+        return next;
+      });
+    }, 3000); // smoother timing
+    return () => clearInterval(interval);
+  }, []);
 
   const playTick = () => tickSound.play();
 
@@ -92,35 +112,44 @@ export default function Home() {
     <div className="relative min-h-screen bg-black text-white scroll-smooth px-4 sm:px-6 py-10 overflow-x-hidden">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/10 via-blue-500/10 to-transparent pointer-events-none z-0" />
 
+      {/* Floating Nav */}
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: 100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 backdrop-blur ${scrolled ? 'bg-black/70' : 'bg-transparent'}`}
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 px-4 py-2 bg-zinc-900/90 backdrop-blur border border-zinc-700 rounded-full shadow-lg flex space-x-4 sm:space-x-6"
       >
-        <div className="flex justify-center flex-wrap space-x-4 sm:space-x-6 py-3 text-sm sm:text-base">
-          {['about', 'skills', 'projects'].map((section) => (
-            <a
-              key={section}
-              href={`#${section}`}
-              className={`px-2 py-1 rounded transition-colors duration-300 ${activeSection === section ? 'text-blue-400 font-semibold' : 'hover:bg-blue-600/20'}`}
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </a>
-          ))}
-        </div>
+        {['about', 'skills', 'projects'].map((section) => (
+          <a
+            key={section}
+            href={`#${section}`}
+            className={`relative px-2 py-1 rounded transition-all duration-300 text-sm sm:text-base ${
+              activeSection === section ? 'text-blue-400 font-semibold' : 'hover:text-blue-400'
+            }`}
+          >
+            {section.charAt(0).toUpperCase() + section.slice(1)}
+            {activeSection === section && (
+              <motion.span
+                layoutId="underline"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-400 rounded-full"
+              />
+            )}
+          </a>
+        ))}
       </motion.nav>
 
+      {/* Scroll to top */}
       {scrolled && (
         <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50"
+          className="fixed bottom-20 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50"
         >
           <ArrowUp />
         </motion.button>
       )}
 
+      {/* Hero Section */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -136,16 +165,21 @@ export default function Home() {
         >
           Dhruvil Rangani
         </motion.h2>
-        <div className="mt-2 text-base sm:text-lg">
-          <Typewriter
-            options={{
-              strings: ['Software Developer', 'Full-Stack Engineer', 'Cloud & API Enthusiast'],
-              autoStart: true,
-              loop: true,
-              delay: 60,
-            }}
-          />
+
+        <div className="mt-2 min-h-[32px] text-base sm:text-lg text-blue-300">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={currentRoleIndex}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.4 }}
+            >
+              {roles[currentRoleIndex]}
+            </motion.p>
+          </AnimatePresence>
         </div>
+
         <div className="flex flex-wrap justify-center gap-4 mt-4">
           <a href="https://github.com/Dhruvil-Rangani" target="_blank" rel="noopener noreferrer"><Github /></a>
           <a href="https://www.linkedin.com/in/dhruvilrangani007/" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
