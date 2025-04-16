@@ -127,7 +127,7 @@ export default function Home() {
         transition={{ duration: 0.6 }}
         className="text-center mt-24 relative z-10"
       >
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Hi, I'm</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Hi 👋🏻, I'm</h1>
         <motion.h2
           initial={{ opacity: 0, x: -30 }}
           animate={{ opacity: 1, x: 0 }}
