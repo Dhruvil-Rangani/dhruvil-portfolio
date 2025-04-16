@@ -143,7 +143,7 @@ export default function Home() {
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
-          className="fixed bottom-20 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50"
+          className="fixed bottom-20 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50 cursor-pointer"
         >
           <ArrowUp />
         </motion.button>
