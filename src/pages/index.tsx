@@ -1,13 +1,17 @@
+// Final enhanced version with cool animations
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, ExternalLink, ArrowUp } from 'lucide-react';
 import { Howl } from 'howler';
 import Image from 'next/image';
+import dynamic from 'next/dynamic';
 
 const tickSound = new Howl({
   src: ['/sounds/ticksound.wav'],
   volume: 0.3,
 });
+
+const Typewriter = dynamic(() => import('typewriter-effect'), { ssr: false });
 
 const projects = [
   {
@@ -36,8 +40,6 @@ const projects = [
   },
 ];
 
-
-
 const skills = [
   { name: 'JavaScript', icon: '/icons/javascript.svg' },
   { name: 'TypeScript', icon: '/icons/typescript.svg' },
@@ -57,9 +59,7 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
-  const playTick = () => {
-    tickSound.play();
-  };
+  const playTick = () => tickSound.play();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -95,16 +95,14 @@ export default function Home() {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className={`fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 backdrop-blur ${scrolled ? 'bg-black/70' : 'bg-transparent'
-          }`}
+        className={`fixed top-0 left-0 w-full z-50 shadow-md transition-all duration-300 backdrop-blur ${scrolled ? 'bg-black/70' : 'bg-transparent'}`}
       >
         <div className="flex justify-center flex-wrap space-x-4 sm:space-x-6 py-3 text-sm sm:text-base">
           {['about', 'skills', 'projects'].map((section) => (
             <a
               key={section}
               href={`#${section}`}
-              className={`px-2 py-1 rounded transition-colors duration-300 ${activeSection === section ? 'text-blue-400 font-semibold' : 'hover:bg-blue-600/20'
-                }`}
+              className={`px-2 py-1 rounded transition-colors duration-300 ${activeSection === section ? 'text-blue-400 font-semibold' : 'hover:bg-blue-600/20'}`}
             >
               {section.charAt(0).toUpperCase() + section.slice(1)}
             </a>
@@ -113,17 +111,41 @@ export default function Home() {
       </motion.nav>
 
       {scrolled && (
-        <button
+        <motion.button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
           className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-md hover:bg-blue-700 z-50"
         >
           <ArrowUp />
-        </button>
+        </motion.button>
       )}
 
-      <motion.div initial="hidden" animate="visible" variants={sectionVariant} transition={{ duration: 0.5 }} className="text-center mt-24 relative z-10">
-        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Dhruvil Rangani</h1>
-        <p className="text-base sm:text-lg">Software Developer | Full-Stack Engineer | Cloud & API Enthusiast</p>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="text-center mt-24 relative z-10"
+      >
+        <h1 className="text-3xl sm:text-4xl font-bold mb-2">Hi, I'm</h1>
+        <motion.h2
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="text-4xl font-extrabold text-blue-400"
+        >
+          Dhruvil Rangani
+        </motion.h2>
+        <div className="mt-2 text-base sm:text-lg">
+          <Typewriter
+            options={{
+              strings: ['Software Developer', 'Full-Stack Engineer', 'Cloud & API Enthusiast'],
+              autoStart: true,
+              loop: true,
+              delay: 60,
+            }}
+          />
+        </div>
         <div className="flex flex-wrap justify-center gap-4 mt-4">
           <a href="https://github.com/Dhruvil-Rangani" target="_blank" rel="noopener noreferrer"><Github /></a>
           <a href="https://www.linkedin.com/in/dhruvilrangani007/" target="_blank" rel="noopener noreferrer"><Linkedin /></a>
@@ -198,6 +220,7 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
+
     </div>
   );
 }
