@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, ExternalLink, ArrowUp } from 'lucide-react';
 import { Howl } from 'howler';
 import Image from 'next/image';
+import { Analytics } from "@vercel/analytics/react"
 
 const tickSound = new Howl({
   src: ['/sounds/ticksound.wav'],
@@ -254,7 +255,7 @@ export default function Home() {
           ))}
         </div>
       </motion.section>
-
+      <Analytics />
     </div>
   );
 }
