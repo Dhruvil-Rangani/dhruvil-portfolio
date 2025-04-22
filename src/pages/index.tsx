@@ -76,7 +76,7 @@ export default function Home() {
         roleSound.play();
         return next;
       });
-    }, 3000); // smoother timing
+    }, 1500); // smoother timing
     return () => clearInterval(interval);
   }, []);
 
