@@ -41,6 +41,13 @@ const projects = [
     live: 'https://vital-plus.netlify.app/',
     techStack: ['React', 'Node.js', 'Brain.js', 'MongoDB', 'JWT'],
   },
+  {
+    title: 'Ai-powered Email Application',
+    description:
+      'A fully self-hosted email application built from scratch using Node.js, Express, IMAP, and SMTP — powered by my own domain: @dhruvilrangani.com. Send, receive, and thread emails using my own infrastructure — no Gmail, no third-party inbox needed! Deployed Site Coming soon 🚀!!!',
+    github: 'https://github.com/Dhruvil-Rangani/Ai-Powered-Email-APP',
+    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JWT', 'Node.js + Express','Email Server: Postfix (SMTP relay), Dovecot (IMAP server)', 'Infrastructure: Hetzner Cloud (Ubuntu 22.04), SSL via Certbot'],
+  },
 ];
 
 const skills = [
