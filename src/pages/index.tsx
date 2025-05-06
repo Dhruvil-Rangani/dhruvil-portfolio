@@ -42,7 +42,7 @@ const projects = [
     techStack: ['React', 'Node.js', 'Brain.js', 'MongoDB', 'JWT'],
   },
   {
-    title: 'Ai-powered Email Application',
+    title: 'Ai-powered Email Application (🚀 Going Live Soon 🔜)',
     description:
       'A fully self-hosted email application built from scratch using Node.js, Express, IMAP, and SMTP — powered by my own domain: @dhruvilrangani.com. Send, receive, and thread emails using my own infrastructure — no Gmail, no third-party inbox needed! Deployed Site Coming soon 🚀!!!',
     github: 'https://github.com/Dhruvil-Rangani/Ai-Powered-Email-APP',
