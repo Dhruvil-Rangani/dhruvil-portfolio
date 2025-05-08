@@ -91,6 +91,11 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html, body {
+  touch-action: pan-y;               /* allow vertical panning immediately */
+  -webkit-overflow-scrolling: touch; /* momentum scrolling if any container scrolls */
+}
+
 .dark {
   --background: oklch(0.141 0.005 285.823);
   --foreground: oklch(0.985 0 0);

@@ -139,7 +139,7 @@ useEffect(() => {
   };
 
   return (
-    <div className="relative min-h-screen bg-black text-white scroll-smooth px-4 sm:px-6 py-10 overflow-x-hidden">
+    <div className="relative min-h-screen bg-black text-white px-4 sm:px-6 py-10">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/10 via-blue-500/10 to-transparent pointer-events-none z-0" />
 
       {/* Floating Nav */}
