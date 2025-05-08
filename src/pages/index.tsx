@@ -1,5 +1,5 @@
 // Final enhanced version with smooth crossfade and sound-animated roles
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, ExternalLink, ArrowUp } from 'lucide-react';
 import { Howl } from 'howler';
@@ -89,27 +89,49 @@ export default function Home() {
 
   const playTick = () => tickSound.play();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 50);
+// 1️⃣ Keep a tiny passive scroll listener just for toggling `scrolled`
+useEffect(() => {
+  const onScroll = () => setScrolled(window.scrollY > 50);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+  return () => window.removeEventListener('scroll', onScroll);
+}, []);
 
-      const sections = ['about', 'skills', 'projects'];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            if (activeSection !== section) playTick();
-            setActiveSection(section);
-            break;
+// 2️⃣ Use IntersectionObserver for section detection
+const hasMounted = useRef(false)
+useEffect(() => {
+  hasMounted.current = true
+}, [])
+
+useEffect(() => {
+  const sections = ['about', 'skills', 'projects'] as const;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && hasMounted.current) {
+          const id = entry.target.id as typeof sections[number];
+          if (activeSection !== id) {
+            playTick();
+            setActiveSection(id);
           }
         }
-      }
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeSection]);
+      });
+    },
+    {
+      rootMargin: '-50% 0px -50% 0px',
+      threshold: 0,
+    }
+  );
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) observer.observe(el);
+  });
+
+  return () => observer.disconnect();
+}, [activeSection]);
+
+  
 
   const sectionVariant = {
     hidden: { opacity: 0, y: 50 },
