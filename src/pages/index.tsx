@@ -46,6 +46,7 @@ const projects = [
     description:
       'A fully self-hosted email application built from scratch using Node.js, Express, IMAP, and SMTP — powered by my own domain: @dhruvilrangani.com. Send, receive, and thread emails using my own infrastructure — no Gmail, no third-party inbox needed! Deployed Site Coming soon 🚀!!!',
     github: 'https://github.com/Dhruvil-Rangani/Ai-Powered-Email-APP',
+    live: 'https://email.dhruvilrangani.com/',
     techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JWT', 'Node.js + Express','Email Server: Postfix (SMTP relay), Dovecot (IMAP server)', 'Infrastructure: Hetzner Cloud (Ubuntu 22.04), SSL via Certbot'],
   },
 ];
