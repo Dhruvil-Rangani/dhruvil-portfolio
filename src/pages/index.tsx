@@ -9,7 +9,6 @@ import Modal from 'react-modal';
 import emailjs from 'emailjs-com';
 import { Analytics } from '@vercel/analytics/react';
 
-// react-pdf and pdfjs-dist imports are REMOVED
 
 // Ensure Modal binds to your app element for accessibility
 if (typeof window !== 'undefined') {
@@ -379,7 +378,7 @@ export default function Home() {
       >
         <h2 className="text-3xl sm:text-4xl font-semibold mb-6 sm:mb-8 text-zinc-100">About Me</h2>
         <p className="max-w-3xl text-sm sm:text-base text-zinc-300 leading-relaxed sm:leading-loose">
-          I’m a full-stack engineer who loves shipping entire products—from polished
+          I&apos;m a full-stack engineer who loves shipping entire products—from polished
           React/Next.js front-ends to rock-solid back-end infrastructure. Most recently
           I built a fully <strong>self-hosted email platform</strong> on Postfix + Dovecot,
           Docker and Hetzner Cloud, complete with Node/Express APIs, PostgreSQL + Prisma,
@@ -387,7 +386,7 @@ export default function Home() {
           blogging platform, a MERN fintech dashboard and an AI-powered healthcare
           assistant. Comfortable across the stack (TypeScript, GraphQL/REST, Postgres,
           Mongo, Docker/AWS, CI/CD), I sweat clean architecture, observability and
-          delightful UX. I’m looking for a team where I can own features end-to-end and
+          delightful UX. I&apos;m looking for a team where I can own features end-to-end and
           keep sharpening my distributed-systems and product skills.
         </p>
       </motion.section>
@@ -496,7 +495,7 @@ export default function Home() {
             <div className="text-center py-4">
                 <motion.div initial={{scale:0}} animate={{scale:1}} className="text-green-400 text-5xl mb-3 mx-auto w-fit">✓</motion.div>
                 <p className="text-green-400 text-lg">Thanks! Your message has been sent.</p>
-                <p className="text-zinc-300 text-sm mt-1">I'll get back to you soon. A confirmation email is on its way to your inbox.</p>
+                <p className="text-zinc-300 text-sm mt-1">I&apos;ll get back to you soon. A confirmation email is on its way to your inbox.</p>
                 <button
                     onClick={closeContactModal}
                     className="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-2.5 rounded text-white transition-colors"
