@@ -17,7 +17,7 @@ if (typeof window !== 'undefined') {
 
 /* ─────────────────────────  SFX  ───────────────────────── */
 const tickSound = new Howl({ src: ['/sounds/ticksound.wav'], volume: 0.3, preload: true });
-const roleSound = new Howl({ src: ['/sounds/roleswap.wav'], volume: 0.3, preload: true });
+
 
 /* ───────────────────────  PROJECTS  ─────────────────────── */
 const projects = [
@@ -123,15 +123,39 @@ export default function Home() {
   /* Bot logging ref */
   const hasLogged = useRef(false);
 
+  const roleSoundRef = useRef<Howl | null>(null);
+
   /* Role rotation */
   useEffect(() => {
-    const id = setInterval(() => {
-      setCurrentRoleIndex(i => {
-        roleSound.play();
-        return (i + 1) % roles.length;
-      });
+  const id = setInterval(() => {
+    if (roleSoundRef.current) {
+        roleSoundRef.current.play();
+    }
+    setCurrentRoleIndex(i => (i + 1) % roles.length);
     }, 1500);
     return () => clearInterval(id);
+  }, []);
+
+  useEffect(() => {
+    const unlockSound = () => {
+      if (!roleSoundRef.current) {
+        roleSoundRef.current = new Howl({
+          src: ['/sounds/roleswap.wav'],
+          volume: 0.3,
+          preload: true,
+        });
+      }
+      window.removeEventListener('click', unlockSound);
+      window.removeEventListener('touchstart', unlockSound);
+    };
+  
+    window.addEventListener('click', unlockSound, { once: true });
+    window.addEventListener('touchstart', unlockSound, { once: true });
+  
+    return () => {
+      window.removeEventListener('click', unlockSound);
+      window.removeEventListener('touchstart', unlockSound);
+    };
   }, []);
 
   /* Scroll listener for scroll-to-top button */
