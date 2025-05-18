@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Howl } from 'howler';
+import { Howl, Howler } from 'howler';
 import { Github, Linkedin, ExternalLink, ArrowUp, Mail, FileText, X as CloseIcon } from 'lucide-react';
 import Image from 'next/image';
 import Modal from 'react-modal';
@@ -136,8 +136,44 @@ export default function Home() {
     return () => clearInterval(id);
   }, []);
 
+  // useEffect(() => {
+  //   const unlockSound = () => {
+  //     if (!roleSoundRef.current) {
+  //       roleSoundRef.current = new Howl({
+  //         src: ['/sounds/roleswap.wav'],
+  //         volume: 0.3,
+  //         preload: true,
+  //       });
+  //     }
+  //     window.removeEventListener('click', unlockSound);
+  //     window.removeEventListener('touchstart', unlockSound);
+  //   };
+  
+  //   window.addEventListener('click', unlockSound, { once: true });
+  //   window.addEventListener('touchstart', unlockSound, { once: true });
+  
+  //   return () => {
+  //     window.removeEventListener('click', unlockSound);
+  //     window.removeEventListener('touchstart', unlockSound);
+  //   };
+  // }, []);
+
+  /* MODIFIED/ENHANCED audio unlock logic */
   useEffect(() => {
-    const unlockSound = () => {
+    const unlockAudioInteraction = () => {
+      // Attempt to resume the Howler.js AudioContext.
+      // This is crucial for sounds to play after user interaction.
+      if (Howler.ctx && Howler.ctx.state !== 'running') {
+        Howler.ctx.resume().catch(e => {
+          console.error("Failed to resume AudioContext on user interaction:", e);
+        });
+      }
+      // else if (Howler.ctx && Howler.ctx.state === 'running') {
+      //   // Optional: log if already running
+      //   console.log("AudioContext was already running on user interaction.");
+      // }
+
+      // Initialize roleSoundRef as in the original code
       if (!roleSoundRef.current) {
         roleSoundRef.current = new Howl({
           src: ['/sounds/roleswap.wav'],
@@ -145,18 +181,18 @@ export default function Home() {
           preload: true,
         });
       }
-      window.removeEventListener('click', unlockSound);
-      window.removeEventListener('touchstart', unlockSound);
     };
   
-    window.addEventListener('click', unlockSound, { once: true });
-    window.addEventListener('touchstart', unlockSound, { once: true });
+    // Listen for the first click or touch event to unlock audio
+    window.addEventListener('click', unlockAudioInteraction, { once: true });
+    window.addEventListener('touchstart', unlockAudioInteraction, { once: true });
   
+    // Cleanup function for when the component unmounts before interaction
     return () => {
-      window.removeEventListener('click', unlockSound);
-      window.removeEventListener('touchstart', unlockSound);
+      window.removeEventListener('click', unlockAudioInteraction);
+      window.removeEventListener('touchstart', unlockAudioInteraction);
     };
-  }, []);
+  }, []); // Empty dependency array ensures this effect runs only once on mount
 
   /* Scroll listener for scroll-to-top button */
   useEffect(() => {
