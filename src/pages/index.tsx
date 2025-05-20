@@ -22,41 +22,54 @@ const tickSound = new Howl({ src: ['/sounds/ticksound.wav'], volume: 0.3, preloa
 /* ───────────────────────  PROJECTS  ─────────────────────── */
 const projects = [
   {
-    title: 'Full-Stack Blogging Platform',
+    title: '🧠 Vital Plus - Healthcare AI Assistant',
     description:
-      'Modern blog built with Next.js, PostgreSQL & Prisma. Secure JWT auth, rich-text editor, and real-time comments via WebSockets.',
-    github: 'https://github.com/Dhruvil-Rangani/blogsite',
-    live: 'https://makeblog.vercel.app/',
-    techStack: ['Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JWT'],
-  },
-  {
-    title: 'Fintech Web Application',
-    description:
-      'MERN dashboard for managing investments. Secure login, Stripe integration, Chart.js visualisations.',
-    github: 'https://github.com/Dhruvil-Rangani/Paytm-Web-App',
-    live: 'https://moneytransfer.vercel.app/',
-    techStack: ['MongoDB', 'Express', 'React', 'Node.js', 'Redux', 'Chart.js'],
-  },
-  {
-    title: 'Healthcare AI Assistant',
-    description:
-      'AI assistant (Brain.js) that predicts health patterns from user symptoms. React + Node backend, JWT-secured.',
+      'AI assistant that predicts health conditions from user symptoms using a Brain.js neural network. Built with React and Node.js, secured via JWT auth, and backed by MongoDB for symptom tracking and analysis. Features include real-time validation, interactive form flow, and GraphQL support for flexible querying.',
     github: 'https://github.com/Dhruvil-Rangani/vital_plus',
     live: 'https://vital-plus.netlify.app/',
-    techStack: ['React', 'Node.js', 'Brain.js', 'MongoDB', 'JWT'],
+    techStack: [
+      'JavaScript', 'React', 'Tailwind CSS', 'Node.js', 'Express.js',
+      'Brain.js', 'MongoDB', 'JWT', 'Zod', 'Axios',
+      'Netlify', 'Render', 'GitHub Actions', 'ESLint', 'GraphQL'
+    ],
   },
   {
-    title: 'Self-Hosted Email Platform (🚀 Coming Soon)',
+    title: '📬 Self-Hosted Email Platform (AI-Powered)',
     description:
-      'Ground-up email system running Postfix + Dovecot on Docker (Hetzner). Threaded inbox, tagging, AI search — backed by Node.js + Express, PostgreSQL + Prisma, JWT auth, slick Next.js front-end.',
+      'Full-featured email system with threaded inbox, tagging, and AI-assisted search. Runs Postfix + Dovecot on Docker (Hetzner), with a Node.js + Express backend and a sleek Next.js frontend. Uses PostgreSQL + Prisma and secure JWT auth.',
     github: 'https://github.com/Dhruvil-Rangani/Ai-Powered-Email-APP',
     live: 'https://email.dhruvilrangani.com/',
     techStack: [
       'Next.js', 'PostgreSQL', 'Prisma', 'Tailwind CSS', 'JWT',
-      'Node.js + Express', 'Postfix', 'Dovecot', 'Docker', 'Hetzner Cloud',
+      'Node.js', 'Express.js', 'Postfix', 'Dovecot', 'Docker', 'Hetzner Cloud'
+    ],
+  },
+  {
+    title: '📝 Full-Stack Blogging Platform',
+    description:
+      'CMS-style blogging app with secure JWT auth, rich-text editor, and real-time comments via WebSockets. Built using a typed Next.js + Prisma stack with server-side rendering and SEO optimization.',
+    github: 'https://github.com/Dhruvil-Rangani/blogsite',
+    live: 'https://makeblog.vercel.app/',
+    techStack: [
+      'TypeScript', 'Next.js', 'React', 'PostgreSQL', 'Prisma',
+      'Tailwind CSS', 'JWT', 'Zod', 'NextAuth', 'WebSockets',
+      'Quill.js', 'Vercel', 'CI/CD (GitHub Actions)'
+    ],
+  },
+  {
+    title: '💰 Fintech Web Application',
+    description:
+      'Investment dashboard built with the MERN stack. Includes secure login, Redux state management, Chart.js visualizations, and Stripe integration for simulated transactions.',
+    github: 'https://github.com/Dhruvil-Rangani/Paytm-Web-App',
+    live: 'https://moneytransfer.vercel.app/',
+    techStack: [
+      'TypeScript', 'Next.js', 'Node.js', 'Express.js',
+      'MongoDB', 'Stripe API', 'Tailwind CSS', 'Docker', 'Zod', 'AWS EC2', 'Vercel'
     ],
   },
 ];
+
+
 
 /* ────────────────────────  SKILLS  ──────────────────────── */
 const skills = [
@@ -72,20 +85,20 @@ const skills = [
   { name: 'Kubernetes', icon: '/icons/kubernetes.svg' },
   { name: 'Tailwind CSS', icon: '/icons/tailwindcss.svg' },
   { name: 'Git', icon: '/icons/git.svg' },
-//   { name: 'SQL', icon: '/icons/sql.svg' },
-//   { name: 'Python', icon: '/icons/python.svg' },
-//   { name: 'Java', icon: '/icons/java.svg' },
-//   { name: 'C#', icon: '/icons/csharp.svg' }, // Uncomment if desired
-//   { name: 'GraphQL', icon: '/icons/graphql.svg' },
-//   { name: 'REST APIs', icon: '/icons/restapi.svg' }, // Being more explicit
-//   // { name: 'FastAPI', icon: '/icons/fastapi.svg' }, // Uncomment if desired
-//   { name: 'Spring Boot', icon: '/icons/springboot.svg' }, // Uncomment if desired
-//   { name: 'MySQL', icon: '/icons/mysql.svg' },
-//   { name: 'DynamoDB', icon: '/icons/dynamodb.svg' }, // Uncomment if desired
-//   { name: 'GitHub Actions', icon: '/icons/githubactions.svg' },
-//   { name: 'CI/CD', icon: '/icons/cicd.svg' },
-//   { name: 'Jest', icon: '/icons/jest.svg' },
-//   { name: 'Postman', icon: '/icons/postman.svg' },
+  //   { name: 'SQL', icon: '/icons/sql.svg' },
+  //   { name: 'Python', icon: '/icons/python.svg' },
+  //   { name: 'Java', icon: '/icons/java.svg' },
+  //   { name: 'C#', icon: '/icons/csharp.svg' }, // Uncomment if desired
+  //   { name: 'GraphQL', icon: '/icons/graphql.svg' },
+  //   { name: 'REST APIs', icon: '/icons/restapi.svg' }, // Being more explicit
+  //   // { name: 'FastAPI', icon: '/icons/fastapi.svg' }, // Uncomment if desired
+  //   { name: 'Spring Boot', icon: '/icons/springboot.svg' }, // Uncomment if desired
+  //   { name: 'MySQL', icon: '/icons/mysql.svg' },
+  //   { name: 'DynamoDB', icon: '/icons/dynamodb.svg' }, // Uncomment if desired
+  //   { name: 'GitHub Actions', icon: '/icons/githubactions.svg' },
+  //   { name: 'CI/CD', icon: '/icons/cicd.svg' },
+  //   { name: 'Jest', icon: '/icons/jest.svg' },
+  //   { name: 'Postman', icon: '/icons/postman.svg' },
 ];
 
 /* ────────────────────  ROTATING ROLES  ──────────────────── */
@@ -127,11 +140,11 @@ export default function Home() {
 
   /* Role rotation */
   useEffect(() => {
-  const id = setInterval(() => {
-    if (roleSoundRef.current) {
+    const id = setInterval(() => {
+      if (roleSoundRef.current) {
         roleSoundRef.current.play();
-    }
-    setCurrentRoleIndex(i => (i + 1) % roles.length);
+      }
+      setCurrentRoleIndex(i => (i + 1) % roles.length);
     }, 1500);
     return () => clearInterval(id);
   }, []);
@@ -148,10 +161,10 @@ export default function Home() {
   //     window.removeEventListener('click', unlockSound);
   //     window.removeEventListener('touchstart', unlockSound);
   //   };
-  
+
   //   window.addEventListener('click', unlockSound, { once: true });
   //   window.addEventListener('touchstart', unlockSound, { once: true });
-  
+
   //   return () => {
   //     window.removeEventListener('click', unlockSound);
   //     window.removeEventListener('touchstart', unlockSound);
@@ -182,11 +195,11 @@ export default function Home() {
         });
       }
     };
-  
+
     // Listen for the first click or touch event to unlock audio
     window.addEventListener('click', unlockAudioInteraction, { once: true });
     window.addEventListener('touchstart', unlockAudioInteraction, { once: true });
-  
+
     // Cleanup function for when the component unmounts before interaction
     return () => {
       window.removeEventListener('click', unlockAudioInteraction);
@@ -325,9 +338,9 @@ export default function Home() {
             onClick={() => setActiveSection(sec)}
             className={`relative px-3 py-1.5 text-xs sm:text-sm transition-colors duration-200 rounded-full
                         ${activeSection === sec
-                          ? 'text-blue-400'
-                          : 'text-zinc-300 hover:text-blue-400'
-                        }`}
+                ? 'text-blue-400'
+                : 'text-zinc-300 hover:text-blue-400'
+              }`}
           >
             {sec.charAt(0).toUpperCase() + sec.slice(1)}
             {activeSection === sec && (
@@ -393,7 +406,7 @@ export default function Home() {
             aria-label="Contact me via form"
             className="flex items-center gap-2 px-4 py-2.5 bg-green-500 text-white rounded-full hover:bg-green-400 shadow-md transition-colors text-sm sm:text-base cursor-pointer"
           >
-            <Mail size={18}/> Contact Me
+            <Mail size={18} /> Contact Me
           </motion.button>
           <motion.button
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -401,21 +414,21 @@ export default function Home() {
             aria-label="View my resume"
             className="flex items-center gap-2 px-4 py-2.5 bg-indigo-500 text-white rounded-full hover:bg-indigo-400 shadow-md transition-colors text-sm sm:text-base cursor-pointer"
           >
-            <FileText size={18}/> View Resume
+            <FileText size={18} /> View Resume
           </motion.button>
           <motion.a
             whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
             href="https://github.com/Dhruvil-Rangani" target="_blank" rel="noopener noreferrer" aria-label="My GitHub Profile"
             className="p-2.5 text-zinc-300 hover:text-blue-400 transition-colors bg-zinc-800 rounded-full shadow-md"
           >
-            <Github size={22}/>
+            <Github size={22} />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}
             href="https://linkedin.com/in/dhruvilrangani007" target="_blank" rel="noopener noreferrer" aria-label="My LinkedIn Profile"
             className="p-2.5 text-zinc-300 hover:text-blue-400 transition-colors bg-zinc-800 rounded-full shadow-md"
           >
-            <Linkedin size={22}/>
+            <Linkedin size={22} />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -500,14 +513,14 @@ export default function Home() {
                   <motion.a
                     href={p.github} target="_blank" rel="noopener noreferrer" aria-label={`GitHub repository for ${p.title}`}
                     className="flex items-center gap-1.5 text-zinc-300 hover:text-blue-400 transition-colors"
-                    whileHover={{x:2}}
+                    whileHover={{ x: 2 }}
                   >
                     <Github size={16} /> GitHub
                   </motion.a>
                   <motion.a
                     href={p.live} target="_blank" rel="noopener noreferrer" aria-label={`Live demo of ${p.title}`}
                     className="flex items-center gap-1.5 text-zinc-300 hover:text-blue-400 transition-colors"
-                    whileHover={{x:2}}
+                    whileHover={{ x: 2 }}
                   >
                     <ExternalLink size={16} /> Live Demo
                   </motion.a>
@@ -547,21 +560,21 @@ export default function Home() {
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h2 className="text-xl sm:text-2xl font-semibold text-zinc-100">Contact Me</h2>
             <button onClick={closeContactModal} aria-label="Close contact form" className="text-zinc-400 hover:text-zinc-100 transition-colors">
-              <CloseIcon size={24}/>
+              <CloseIcon size={24} />
             </button>
           </div>
 
           {sent ? (
             <div className="text-center py-4">
-                <motion.div initial={{scale:0}} animate={{scale:1}} className="text-green-400 text-5xl mb-3 mx-auto w-fit">✓</motion.div>
-                <p className="text-green-400 text-lg">Thanks! Your message has been sent.</p>
-                <p className="text-zinc-300 text-sm mt-1">I&apos;ll get back to you soon. A confirmation email is on its way to your inbox.</p>
-                <button
-                    onClick={closeContactModal}
-                    className="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-2.5 rounded text-white transition-colors"
-                >
-                    Close
-                </button>
+              <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} className="text-green-400 text-5xl mb-3 mx-auto w-fit">✓</motion.div>
+              <p className="text-green-400 text-lg">Thanks! Your message has been sent.</p>
+              <p className="text-zinc-300 text-sm mt-1">I&apos;ll get back to you soon. A confirmation email is on its way to your inbox.</p>
+              <button
+                onClick={closeContactModal}
+                className="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-2.5 rounded text-white transition-colors"
+              >
+                Close
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSend} className="space-y-4">
@@ -614,16 +627,16 @@ export default function Home() {
         overlayClassName="fixed inset-0 bg-black/70 backdrop-blur-sm z-[55]"
       >
         <motion.div
-          initial={{ scale: 0.9, opacity: 0, y:50 }}
-          animate={{ scale: 1, opacity: 1, y:0 }}
-          exit={{ scale: 0.9, opacity: 0, y:50 }}
-          transition={{type: 'spring', stiffness:200, damping:25}}
+          initial={{ scale: 0.9, opacity: 0, y: 50 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          exit={{ scale: 0.9, opacity: 0, y: 50 }}
+          transition={{ type: 'spring', stiffness: 200, damping: 25 }}
           className="bg-zinc-800 p-3 sm:p-4 rounded-lg w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl border border-zinc-700"
         >
           <div className="flex justify-between items-center mb-2 sm:mb-3">
             <h2 className="text-lg sm:text-xl font-semibold text-zinc-100">My Resume</h2>
             <button onClick={closeResumeModal} aria-label="Close resume viewer" className="text-zinc-400 hover:text-red-400 transition-colors p-1">
-              <CloseIcon size={24}/>
+              <CloseIcon size={24} />
             </button>
           </div>
           <div className="flex-1 overflow-hidden bg-zinc-900 rounded"> {/* Changed to overflow-hidden for iframe */}
@@ -633,12 +646,12 @@ export default function Home() {
               width="100%"
               height="100%"
               style={{ border: 'none' }} // Remove iframe border
-              // sandbox // Optional: for added security, but might restrict some PDF functionalities
+            // sandbox // Optional: for added security, but might restrict some PDF functionalities
             >
               <p className="p-4 text-zinc-300">Your browser does not support embedded PDFs. Please <a href={resumeUrl} download="Dhruvil_Rangani_Resume.pdf" className="text-blue-400 hover:underline">download the PDF</a> to view it.</p>
             </iframe>
           </div>
-           <a
+          <a
             href={resumeUrl}
             download="Dhruvil_Rangani_Resume.pdf"
             className="mt-3 text-center w-full max-w-xs mx-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors text-sm"
@@ -654,7 +667,7 @@ export default function Home() {
           &copy; {new Date().getFullYear()} Dhruvil Rangani. All rights reserved.
         </p>
         <p className="text-xs text-zinc-600 mt-1">
-            Built with Next.js, Tailwind CSS, and Framer Motion.
+          Built with Next.js, Tailwind CSS, and Framer Motion.
         </p>
       </footer>
     </div>
