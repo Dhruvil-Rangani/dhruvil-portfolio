@@ -325,7 +325,7 @@ export default function Home() {
   return (
     <>
     <Head>
-        <title>Dhruvil's Portfolio</title>
+        <title>Dhruvil&apos;s Portfolio</title>
     </Head>
     <div className="relative min-h-screen bg-black text-zinc-100 px-4 sm:px-6 py-10 font-sans">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-slate-900/10 to-transparent pointer-events-none z-0" />
