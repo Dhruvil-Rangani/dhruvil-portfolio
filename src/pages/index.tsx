@@ -8,6 +8,7 @@ import Image from 'next/image';
 import Modal from 'react-modal';
 import emailjs from 'emailjs-com';
 import { Analytics } from '@vercel/analytics/react';
+import Head from 'next/head';
 
 
 // Ensure Modal binds to your app element for accessibility
@@ -322,6 +323,9 @@ export default function Home() {
   const closeResumeModal = () => setResumeOpen(false);
 
   return (
+    <Head>
+        <title>Dhruvil's Portfolio</title>
+    </Head>
     <div className="relative min-h-screen bg-black text-zinc-100 px-4 sm:px-6 py-10 font-sans">
       <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 via-slate-900/10 to-transparent pointer-events-none z-0" />
 
