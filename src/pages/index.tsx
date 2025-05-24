@@ -323,6 +323,7 @@ export default function Home() {
   const closeResumeModal = () => setResumeOpen(false);
 
   return (
+    <>
     <Head>
         <title>Dhruvil's Portfolio</title>
     </Head>
@@ -675,5 +676,6 @@ export default function Home() {
         </p>
       </footer>
     </div>
+    </>
   );
 }
