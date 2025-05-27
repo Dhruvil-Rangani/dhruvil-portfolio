@@ -128,7 +128,7 @@ export default function Home() {
 
   /* Resume Modal */
   const [isResumeOpen, setResumeOpen] = useState(false);
-  const resumeUrl = '/Dhruvil_Rangani_Resume.pdf'; // Ensure this PDF is in your /public folder
+  const resumeUrl = '/resume.pdf'; // Ensure this PDF is in your /public folder
 
   // resumeViewerRef and resumeWidth state are no longer needed for iframe method
   // const resumeViewerRef = useRef<HTMLDivElement>(null);
