@@ -564,7 +564,7 @@ export default function Home() {
         >
           <div className="flex justify-between items-center mb-4 sm:mb-6">
             <h2 className="text-xl sm:text-2xl font-semibold text-zinc-100">Contact Me</h2>
-            <button onClick={closeContactModal} aria-label="Close contact form" className="text-zinc-400 hover:text-zinc-100 transition-colors">
+            <button onClick={closeContactModal} aria-label="Close contact form" className="text-zinc-400 hover:text-zinc-100 transition-colors cursor-pointer">
               <CloseIcon size={24} />
             </button>
           </div>
@@ -576,7 +576,7 @@ export default function Home() {
               <p className="text-zinc-300 text-sm mt-1">I&apos;ll get back to you soon. A confirmation email is on its way to your inbox.</p>
               <button
                 onClick={closeContactModal}
-                className="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-2.5 rounded text-white transition-colors"
+                className="mt-6 w-full bg-blue-600 hover:bg-blue-700 p-2.5 rounded text-white transition-colors cursor-pointer"
               >
                 Close
               </button>
@@ -614,7 +614,7 @@ export default function Home() {
               <button
                 type="submit"
                 disabled={sending}
-                className="w-full bg-green-600 hover:bg-green-700 disabled:bg-zinc-500 p-2.5 rounded text-white font-semibold transition-colors"
+                className="w-full bg-green-600 hover:bg-green-700 disabled:bg-zinc-500 p-2.5 rounded text-white font-semibold transition-colors cursor-pointer"
               >
                 {sending ? 'Sending…' : 'Send Message'}
               </button>
@@ -640,7 +640,7 @@ export default function Home() {
         >
           <div className="flex justify-between items-center mb-2 sm:mb-3">
             <h2 className="text-lg sm:text-xl font-semibold text-zinc-100">My Resume</h2>
-            <button onClick={closeResumeModal} aria-label="Close resume viewer" className="text-zinc-400 hover:text-red-400 transition-colors p-1">
+            <button onClick={closeResumeModal} aria-label="Close resume viewer" className="text-zinc-400 hover:text-red-400 transition-colors p-1 cursor-pointer">
               <CloseIcon size={24} />
             </button>
           </div>
@@ -653,12 +653,12 @@ export default function Home() {
               style={{ border: 'none' }} // Remove iframe border
             // sandbox // Optional: for added security, but might restrict some PDF functionalities
             >
-              <p className="p-4 text-zinc-300">Your browser does not support embedded PDFs. Please <a href={resumeUrl} download="Dhruvil_Rangani_Resume.pdf" className="text-blue-400 hover:underline">download the PDF</a> to view it.</p>
+              <p className="p-4 text-zinc-300">Your browser does not support embedded PDFs. Please <a href={resumeUrl} download="resume.pdf" className="text-blue-400 hover:underline">download the PDF</a> to view it.</p>
             </iframe>
           </div>
           <a
             href={resumeUrl}
-            download="Dhruvil_Rangani_Resume.pdf"
+            download="resume.pdf"
             className="mt-3 text-center w-full max-w-xs mx-auto bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors text-sm"
           >
             Download PDF
