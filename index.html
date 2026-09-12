@@ -416,16 +416,15 @@
     .sig-name { display: none; }
     .bar-in { gap: 10px; }
     .menu { gap: 0; }
-    .menu a { padding: 7px 9px; font-size: .6875rem; letter-spacing: .03em; }
-    /* fade the right edge so a clipped link reads as scrollable, never as overlap */
-    .menu {
-      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
-      mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
-      padding-inline: 2px;
-    }
+    .menu a { padding: 7px 7px; font-size: .6875rem; letter-spacing: .02em; }
   }
-  @media (max-width: 420px) {
-    .menu a { padding: 7px 7px; font-size: .625rem; letter-spacing: .02em; }
+  /* fade the edges only when the menu actually has to scroll, so a clipped link reads as swipeable */
+  .menu.is-scrollable {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 14px, #000 calc(100% - 14px), transparent 100%);
+  }
+  @media (max-width: 480px) {
+    .menu a { padding: 6px 5px; font-size: .625rem; letter-spacing: .01em; }
   }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -448,6 +447,7 @@
       <a href="#skills">Skills</a>
       <a href="#work">Work</a>
       <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
   </div>
@@ -889,6 +889,15 @@
     }, { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
     sections.forEach(s => so.observe(s));
   }
+
+  /* fade the menu edges only while it overflows its row */
+  const menu = document.querySelector(".menu");
+  const syncMenuFade = () => {
+    menu.classList.toggle("is-scrollable", menu.scrollWidth > menu.clientWidth + 1);
+  };
+  syncMenuFade();
+  window.addEventListener("resize", syncMenuFade, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncMenuFade);
 
   /* sticky bar hairline + back to top */
   const bar = document.getElementById("bar");
